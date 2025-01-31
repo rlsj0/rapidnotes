@@ -39,4 +39,17 @@ public static class NoteServices
         Notes[index] = note;
     }
 
+    public static List<Note>? Search(int idUser, string? title, DateTime? creationDate, int? priority, bool? IsActive)
+    {
+        var searchNote = Notes.Where(note => note.UserId == idUser &&
+            (
+                (title == null || note.Title.Contains(title)) && 
+                (creationDate == null || note.CreationDate == creationDate) &&
+                (priority == null || note.Priority == priority) &&
+                (IsActive == null || note.IsActive == IsActive)
+            )
+            ).ToList<Note>();
+
+        return searchNote;
+    }
 }
