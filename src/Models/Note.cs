@@ -15,6 +15,16 @@ public class Note
     {
     }
 
+    public Note(int userid, string title, string text, int priority)
+    {
+        UserId = userid;
+        Title = title;
+        Text = text;
+        Priority = priority;
+        CreationDate = DateTime.Now;
+        IsActive = true;
+    }
+
     public Note(int id, int userid, string title, string text, int priority, DateTime creationdate, bool isactive)
     {
         Id = id;
