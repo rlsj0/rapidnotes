@@ -42,8 +42,9 @@ public static class UserServices
         Users[index] = user;
     }
 
-    public static void Login()
+    public static User? Auth(string email, string password)
     {
-        
+        return Users.FirstOrDefault(p => p.Email == email && p.Password == password);
+        // Devuelve null si no encuentra nada
     }
 }
