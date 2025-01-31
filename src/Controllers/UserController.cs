@@ -50,7 +50,7 @@ public class UserController : ControllerBase
             return NotFound();
 
         UserServices.Update(user);
-        return NoContent();
+        return Ok(user);
     }
 
     [HttpDelete("{id}")]
@@ -63,6 +63,6 @@ public class UserController : ControllerBase
 
         UserServices.Delete(id);
 
-        return NoContent();
+        return Ok(id);
     }
 }

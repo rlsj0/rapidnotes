@@ -14,6 +14,11 @@ public class User
 
     public bool SoftDelete { get; set; }
 
+    public User()
+    {
+
+    }
+
     public User(string name, string email, string password)
     {
         Name = name;
