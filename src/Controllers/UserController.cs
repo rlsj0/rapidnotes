@@ -1,7 +1,6 @@
-using Controllers;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Services;
 
 namespace Controllers;
 
@@ -19,8 +18,18 @@ public class UserController : ControllerBase
     [HttpGet(Name = "User")]
     public IEnumerable<User> Get()
     {
-      //  return _users;
         return UserServices.GetAll();
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult<User> Get(int id)
+    {
+        var user = UserServices.Get(id);
+
+        if (user == null)
+            return NotFound();
+
+        return user;
     }
 
     [HttpPost(Name = "User")]
