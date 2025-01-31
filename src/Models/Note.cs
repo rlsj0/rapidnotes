@@ -4,6 +4,7 @@ public class Note
 {
 
     public int Id { get; set; }
+    public int UserId { get; set; }
     public string Title { get; set; } = "";
     public string Text { get; set; } = "";
     public int Priority { get; set; }
@@ -14,9 +15,10 @@ public class Note
     {
     }
 
-    public Note(int id, string title, string text, int priority, DateTime creationdate, bool isactive)
+    public Note(int id, int userid, string title, string text, int priority, DateTime creationdate, bool isactive)
     {
         Id = id;
+        UserId = userid;
         Title = title;
         Text = text;
         Priority = priority;
