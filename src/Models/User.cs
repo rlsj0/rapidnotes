@@ -1,4 +1,4 @@
-namespace src.Models;
+namespace Models;
 
 public class User
 {
@@ -9,13 +9,26 @@ public class User
     public string Email { get; set; }
 
     public string Password { get; set; }
+
     public DateTime CreateDate { get; set; }
+
+    public bool SoftDelete { get; set; }
 
     public User(string name, string email, string password)
     {
         Name = name;
         Email = email;
-        this.Password = password;
-        this.CreateDate = DateTime.Now;
+        Password = password;
+        CreateDate = DateTime.Now;
+    }
+
+    public User(int id, string name, string email, string password, DateTime createdate, bool softdelete)
+    {
+        Id = id;
+        Name = name;
+        Email = email;
+        Password = password;
+        CreateDate = createdate;
+        SoftDelete = softdelete;
     }
 }
