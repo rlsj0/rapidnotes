@@ -1,3 +1,4 @@
+using Controllers;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -18,6 +19,7 @@ public class UserController : ControllerBase
     [HttpGet(Name = "User")]
     public IEnumerable<User> Get()
     {
+      //  return _users;
         return UserServices.GetAll();
     }
 
@@ -46,7 +48,7 @@ public class UserController : ControllerBase
     public IActionResult Delete(int id)
     {
         var user = UserServices.Get(id);
-
+       
         if (user is null)
             return NotFound();
 
