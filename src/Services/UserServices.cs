@@ -1,6 +1,6 @@
-using src.Models;
+using Models;
 
-namespace src;
+namespace Services;
 
 public static class UserServices
 {
@@ -27,7 +27,7 @@ public static class UserServices
     public static void Delete(int id)
     {
         var user = Get(id);
-        if(user is null)
+        if (user is null)
             return;
 
         Users.Remove(user);
@@ -36,7 +36,7 @@ public static class UserServices
     public static void Update(User user)
     {
         var index = Users.FindIndex(p => p.Id == user.Id);
-        if(index == -1)
+        if (index == -1)
             return;
 
         Users[index] = user;

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using src.Models;
+using Models;
 
-namespace src.Controllers;
+namespace Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -22,16 +22,16 @@ public class UserController : ControllerBase
     }
 
     [HttpPost(Name = "User")]
-    public IActionResult Create(User user) 
+    public IActionResult Create(User user)
     {
         UserServices.Add(user);
-        return CreatedAtAction(nameof(Get), new {id = user.Id}, user);
+        return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update (int id, User user) 
+    public IActionResult Update(int id, User user)
     {
-        if (id!= user.Id)
+        if (id != user.Id)
             return BadRequest();
 
         var existingUser = UserServices.Get(id);
@@ -43,7 +43,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id) 
+    public IActionResult Delete(int id)
     {
         var user = UserServices.Get(id);
 
