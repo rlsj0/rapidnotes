@@ -33,7 +33,7 @@ public class NoteController : ControllerBase
 
         if (note == null)
             return NotFound();
-        
+
         return note;
     }
 
@@ -70,4 +70,16 @@ public class NoteController : ControllerBase
 
         return Ok(id);
     }
+
+    [HttpGet("search/{idUser}")]
+    public ActionResult<List<Note>> Search(int idUser, string? title, DateTime? creationDate, int? priority, bool? IsActive)
+    {
+        var note = NoteServices.Search(idUser, title, creationDate, priority, IsActive);
+
+        if (note == null)
+            return NotFound();
+
+        return note;
+    }
+
 }
