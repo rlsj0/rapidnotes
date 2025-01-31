@@ -1,0 +1,57 @@
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using src.Models;
+
+namespace src.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class UserController : ControllerBase
+{
+    private readonly ILogger<UserController> _logger;
+
+    public UserController(ILogger<UserController> logger)
+    {
+        _logger = logger;
+    }
+
+    [HttpGet(Name = "User")]
+    public IEnumerable<User> Get()
+    {
+        return UserServices.GetAll();
+    }
+
+    [HttpPost(Name = "User")]
+    public IActionResult Create(User user) 
+    {
+        UserServices.Add(user);
+        return CreatedAtAction(nameof(Get), new {id = user.Id}, user);
+    }
+
+    [HttpPut("{id}")]
+    public IActionResult Update (int id, User user) 
+    {
+        if (id!= user.Id)
+            return BadRequest();
+
+        var existingUser = UserServices.Get(id);
+        if (existingUser is null)
+            return NotFound();
+
+        UserServices.Update(user);
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id) 
+    {
+        var user = UserServices.Get(id);
+
+        if (user is null)
+            return NotFound();
+
+        UserServices.Delete(id);
+
+        return NoContent();
+    }
+}
