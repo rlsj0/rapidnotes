@@ -21,6 +21,17 @@ public class UserController : ControllerBase
         return UserServices.GetAll();
     }
 
+    [HttpGet("{id}")]
+    public ActionResult<User> Get(int id)
+    {
+        var user = UserServices.Get(id);
+
+        if (user == null)
+            return NotFound();
+
+        return user;
+    }
+
     [HttpPost(Name = "User")]
     public IActionResult Create(User user)
     {

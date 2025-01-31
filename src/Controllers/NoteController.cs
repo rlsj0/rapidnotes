@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Services;
 
 namespace Controllers;
 
@@ -14,10 +15,15 @@ public class NoteController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "Note")]
-    public IEnumerable<User> Get()
+    [HttpGet("{id}")]
+    public ActionResult<Note> Get(int id)
     {
-        return NoteServices.GetAll();
+        var note = NoteServices.Get(id);
+
+        if (note == null)
+            return NotFound();
+
+        return note;
     }
 
     [HttpPost(Name = "Note")]
