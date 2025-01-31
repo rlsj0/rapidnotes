@@ -26,6 +26,17 @@ public class NoteController : ControllerBase
         return note;
     }
 
+    [HttpGet("notes/{id_user}")]
+    public ActionResult<List<Note>> GetAllByUser(int id_user)
+    {
+        var note = NoteServices.GetAllByUser(id_user);
+
+        if (note == null)
+            return NotFound();
+        
+        return note;
+    }
+
     [HttpPost(Name = "Note")]
     public IActionResult Create(Note note)
     {
@@ -44,7 +55,7 @@ public class NoteController : ControllerBase
             return NotFound();
 
         NoteServices.Update(note);
-        return NoContent();
+        return Ok(note);
     }
 
     [HttpDelete("{id}")]
@@ -57,6 +68,6 @@ public class NoteController : ControllerBase
 
         NoteServices.Delete(id);
 
-        return NoContent();
+        return Ok(id);
     }
 }
