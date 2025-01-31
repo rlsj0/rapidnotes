@@ -49,7 +49,7 @@ public static class NoteRepository
         }
     }
 
-    public static List<Note> SelectAllNotes()
+    public static List<Note> SelectAllUserNotes(int userid)
     {
         var notelist = new List<Note>();
 
@@ -59,14 +59,15 @@ public static class NoteRepository
 
             var command = connection.CreateCommand();
             command.CommandText =
-            @"SELECT * FROM notes;";
+            @"SELECT * FROM notes WHERE userid = $userid;";
+            command.Parameters.AddWithValue("$userid", userid);
 
             using (var reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
                     var id = reader.GetInt32(0);
-                    var userid = reader.GetInt32(1);
+                    var newuserid = reader.GetInt32(1);
                     var title = reader.GetString(2);
                     var text = reader.GetString(3);
                     var priority = reader.GetInt32(4);
@@ -89,7 +90,7 @@ public static class NoteRepository
                     }
 
                     // Nuevo item y add it
-                    var note = new Note(id, userid, title, text, priority, date, isactive);
+                    var note = new Note(id, newuserid, title, text, priority, date, isactive);
                     notelist.Add(note);
                 }
             }
