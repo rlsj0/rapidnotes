@@ -47,7 +47,7 @@
     <main class="main">
 
        <section class="main__login text-center">
-            <form class="login__form form-signin">
+            <form class="login__form form-signin" id="form">
                 <img class="login__form-image mb-4" src="./img/icons/userRounded.svg" alt="LoginIcon" width="72" height="72">
                 <h2 class="login__form-title mb-3">Registrar usuario</h1>
 
@@ -55,8 +55,8 @@
                 <input type="email" id="inputEmail" class="login__form-input form-control" placeholder="Correo" required="" autofocus="">
                 <label for="inputPassword" class="login__form-label sr-only mt-3">Contraseña</label>
                 <input type="password" id="inputPassword" class="login__form-input form-control" placeholder="Contraseña" required="">
-                <label for="inputEmail" class="login__form-label sr-only mt-3">Nombre</label>
-                <input type="email" id="inputEmail" class="login__form-input form-control" placeholder="Nombre" required="" autofocus="">
+                <label for="inputName" class="login__form-label sr-only mt-3">Nombre</label>
+                <input type="text" id="inputName" class="login__form-input form-control" placeholder="Nombre" required="" autofocus="">
                 <button class="login__form-button btn btn-lg btn-primary btn-block mt-3" type="submit">Registrar</button>
               </form>
         </section>
@@ -86,16 +86,9 @@
         </div>
 
     </footer>
-
-    <script>
-        document.getElementById("menu-toggle").addEventListener("click", function() {
-            document.getElementById("menu").classList.add("active");
-        });
-    
-        document.getElementById("menu-close").addEventListener("click", function() {
-            document.getElementById("menu").classList.remove("active");
-        });
-    </script>
+    <script src="./js/register.js" type="module"></script>
+    <script src="./js/user.js" type="module"></script>
+    <script src="./js/utils/errorUtils.js" type="module"></script>
 
 </body>
 

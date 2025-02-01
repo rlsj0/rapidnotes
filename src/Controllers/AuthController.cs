@@ -29,9 +29,9 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    public IActionResult Register([FromBody] User loginRequest)
+    public IActionResult Register([FromBody] User registerRequest)
     {
-        var success = UserServices.Register(loginRequest.Name, loginRequest.Email, loginRequest.Password);
+        var success = UserServices.Register(registerRequest.Name, registerRequest.Email, registerRequest.Password);
         if (!success)
         {
             return BadRequest(new { message = "Email already used" });

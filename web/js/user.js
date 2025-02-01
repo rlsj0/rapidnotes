@@ -7,23 +7,21 @@ class User {
             .catch(error => console.log(error))
     }
 
-    addNewUser(id, name, email, password, createDate, softDelete) {
+    static addNewUser(name, email, password) {
         fetch(`http://localhost:5207/Auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                "id": id,
                 "name": name,
                 "email": email,
                 "password": password,
-                "createDate": createDate,
-                "softDelete": softDelete
             })
         })
             .then(response => response.json())
             .then(datos => console.log(datos))
+
     }
 
     static loginUser(email, password) {
