@@ -1,0 +1,15 @@
+//Importar archivos de carpeta base
+@use 'base/variables' as *;
+@use 'base/global' as *;
+@use 'base/mixins' as *;
+
+//Importar archivos de carpeta components
+
+
+//Importar archivos de carpeta layout
+@use 'layout/footer';
+@use 'layout/header';
+
+//Importar archivos de carpeta pages
+@use 'pages/home';
+@use 'pages/detail';
