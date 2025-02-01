@@ -2,13 +2,13 @@ class User {
 
     async getUserById(id) {
         return await fetch(`http://localhost:8080/User/${id}`)
-            .then(respuesta => respuesta.json)
+            .then(response => response.json)
             .then(datos => { return (datos) })
             .catch(error => console.log(error))
     }
 
     addNewUser(id, name, email, password, createDate, softDelete) {
-        fetch(`http://localhost:8080/User`, {
+        fetch(`http://localhost:8080/Auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ class User {
                 "softDelete": softDelete
             })
         })
-            .then(respuesta => respuesta.json())
+            .then(response => response.json())
             .then(datos => console.log(datos))
     }
 
@@ -41,7 +41,7 @@ class User {
                 "createDate": createDate,
                 "softDelete": softDelete
             })
-        }).then(respuesta => console.log(respuesta))
+        }).then(response => console.log(response))
             .catch(error => console.log(error))
     }
 
