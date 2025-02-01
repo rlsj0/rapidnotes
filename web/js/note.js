@@ -1,8 +1,13 @@
 class Note {
-    // TODO: Pillar notas por usuario
+    async getNotesByUserId(userid) {
+        return await fetch(`http://localhost:8080/Note/${userid}`)
+            .then((response) => response.json)
+            .then((data) => console.log(data));
+        // TODO: llamar al método que lo pinte
+    }
 
     addNote(userId, title, text, priority) {
-        fetch("http://localhost:8080/Notes", {
+        fetch("http://localhost:8080/Note", {
             method: "POST",
             body: JSON.stringify({
                 "userId": userId,
