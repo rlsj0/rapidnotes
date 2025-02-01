@@ -3,7 +3,6 @@ class Note {
         return await fetch(`http://localhost:8080/Note/${userid}`)
             .then((response) => response.json)
             .then((data) => console.log(data));
-        // TODO: llamar al método que lo pinte
     }
 
     addNote(userId, title, text, priority) {
@@ -45,6 +44,11 @@ class Note {
         }).catch((error) => console.log(error));
     }
 
-    // TODO:
-    searchNote() {}
+    async searchNote(userId, title, creationDate, priority, isActive) {
+        return await fetch(
+            `http://localhost:8080/Note/search/${userId}?title=${title}&creationDate=${creationDate}&priority=${priority}&IsActive=${isActive}`,
+        )
+            .then((response) => response.json)
+            .then((data) => console.log(data));
+    }
 }
