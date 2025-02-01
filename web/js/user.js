@@ -1,14 +1,14 @@
 class User {
 
     async getUserById(id) {
-        return await fetch(`http://localhost:8080/User/${id}`)
+        return await fetch(`http://localhost:5207/User/${id}`)
             .then(response => response.json)
             .then(datos => { return (datos) })
             .catch(error => console.log(error))
     }
 
     addNewUser(id, name, email, password, createDate, softDelete) {
-        fetch(`http://localhost:8080/Auth/register`, {
+        fetch(`http://localhost:5207/Auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,27 +26,28 @@ class User {
             .then(datos => console.log(datos))
     }
 
-    loginUser(name, email, password) {
-        fetch(`http://localhost:8080/Auth/login`, {
+    static loginUser(email, password) {
+        fetch(`http://localhost:5207/Auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                "name": name,
                 "email": email,
                 "password": password,
             })
         })
 
             .then(response => response.json())
-            .then(datos => console.log(datos))
-
+            .then(datos =>  {
+                console.log(datos)
+                return datos;})
+            
     }
 
     modifyUser(id, name, email, password, createDate, softDelete) {
         console.log(id);
-        fetch(`http://localhost:8080/User/${id}`, {
+        fetch(`http://localhost:5207/User/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,8 +65,11 @@ class User {
     }
 
     deleteUser(id) {
-        fetch(`http://localhost:8080/User/${id}`, {
+        fetch(`http://localhost:5207/User/${id}`, {
             method: 'DELETE',
         }).catch(error => console.log(error))
     }
 }
+
+
+export default User;

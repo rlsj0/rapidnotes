@@ -1,12 +1,12 @@
 class Note {
     async getNotesByUserId(userid) {
-        return await fetch(`http://localhost:8080/Note/${userid}`)
+        return await fetch(`http://localhost:5207/Note/${userid}`)
             .then((response) => response.json)
             .then((data) => console.log(data));
     }
 
     addNote(userId, title, text, priority) {
-        fetch("http://localhost:8080/Note", {
+        fetch("http://localhost:5207/Note", {
             method: "POST",
             body: JSON.stringify({
                 "userId": userId,
@@ -23,7 +23,7 @@ class Note {
     }
 
     modifyNote(id, title, text, priority, isActive) {
-        fetch(`http://localhost:8080/Note/${id}`, {
+        fetch(`http://localhost:5207/Note/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -39,14 +39,14 @@ class Note {
     }
 
     deleteNote(id) {
-        fetch(`http://localhost:8080/Note/${id}`, {
+        fetch(`http://localhost:5207/Note/${id}`, {
             method: "DELETE",
         }).catch((error) => console.log(error));
     }
 
     async searchNote(userId, title, creationDate, priority, isActive) {
         return await fetch(
-            `http://localhost:8080/Note/search/${userId}?title=${title}&creationDate=${creationDate}&priority=${priority}&IsActive=${isActive}`,
+            `http://localhost:5207/Note/search/${userId}?title=${title}&creationDate=${creationDate}&priority=${priority}&IsActive=${isActive}`,
         )
             .then((response) => response.json)
             .then((data) => console.log(data));
