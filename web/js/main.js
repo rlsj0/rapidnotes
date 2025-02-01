@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   //envio de formulario de login
-  document.getElementById("form");
+  const form =document.getElementById("form");
   form.addEventListener('submit', function (event){
 
     const inputEmail = document.querySelector("#inputEmail").value;
@@ -24,8 +24,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
     event.preventDefault();
-    User.loginUser(inputEmail, inputPassword)
-      
+    const userIdLogged = User.loginUser(inputEmail, inputPassword).then(function(userIdLogged) {
+
+      console.log(userIdLogged);
+
+      if (userIdLogged) {
+        sessionStorage.setItem("userId", userIdLogged);
+        console.log(userIdLogged);
+        window.location.href = "detail.html";
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
+    })
   })
 
 

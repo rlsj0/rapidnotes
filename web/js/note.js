@@ -1,8 +1,10 @@
 class Note {
-    async getNotesByUserId(userid) {
-        return await fetch(`http://localhost:5207/Note/${userid}`)
+    static async getNotesByUserId(userid) {
+        return await fetch(`http://localhost:5207/Note/notes/${userid}`)
             .then((response) => response.json)
-            .then((data) => console.log(data));
+            .then((data) => {
+                console.log(data)
+                return data;});
     }
 
     addNote(userId, title, text, priority) {
@@ -52,3 +54,5 @@ class Note {
             .then((data) => console.log(data));
     }
 }
+
+export default Note;
