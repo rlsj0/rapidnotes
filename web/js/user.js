@@ -24,23 +24,46 @@ class User {
 
     }
 
-    static loginUser(email, password) {
-        fetch(`http://localhost:5207/Auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "email": email,
-                "password": password,
-            })
-        })
+    //  static loginUser(email, password) {
+    //     fetch(`http://localhost:5207/Auth/login`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //           email,password
+    //         })
+    //     })
 
-            .then(response => response.json())
-            .then(datos =>  {
-                console.log(datos)
-                return datos;})
+    //         .then(response => response.json())
+    //         .then(datos =>  {
+    //             console.log(datos)
+    //             return datos;})
             
+    // }
+
+    static async loginUser(email, password) {
+        try {
+            const response = await fetch(`http://localhost:5207/Auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+    
+            if (!response.ok) {
+                throw new Error("Error en la autenticación"); // Manejo de error
+            }
+    
+            //const datos = await response.json();
+            console.log(response);
+            //console.log(datos);
+            return response.json();; // Ahora sí devuelve los datos correctamente
+        } catch (error) {
+            console.error("Error en loginUser:", error);
+            return null; // Retorna `null` en caso de error
+        }
     }
 
     modifyUser(id, name, email, password, createDate, softDelete) {
