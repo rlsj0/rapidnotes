@@ -31,7 +31,7 @@
 
 
                 <ul class="header__nav-list">
-                    <li class="header__nav-item"><a href="#" class="header__nav-link">Home</a></li>
+                    <li class="header__nav-item"><a href="./index.html" class="header__nav-link">Home</a></li>
                     <li class="header__nav-item"><a href="#" class="header__nav-link">FAQ</a></li>
                     <li class="header__nav-item"><a href="#" class="header__nav-link">¿Quién somos?</a></li>
                     <li class="header__nav-item"><a href="#" class="header__nav-link">Mis notas</a></li>
@@ -74,14 +74,9 @@
 
     </footer>
 
-    <script>
-        document.getElementById("menu-toggle").addEventListener("click", function() {
-            document.getElementById("menu").classList.add("active");
-        });
-    
-        document.getElementById("menu-close").addEventListener("click", function() {
-            document.getElementById("menu").classList.remove("active");
-        });
-    </script>
+    <script src="./js/detail.js" type="module"></script>
+    <script src="./js/user.js" type="module"></script>
+    <script src="./js/note.js" type="module"></script>
+    <script src="./js/utils/errorUtils.js" type="module"></script>
 </body>
 </html>
