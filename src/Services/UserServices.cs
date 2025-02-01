@@ -47,4 +47,29 @@ public static class UserServices
         return Users.FirstOrDefault(p => p.Email == email && p.Password == password);
         // Devuelve null si no encuentra nada
     }
+
+    public static bool Register(string name, string email, string password)
+    {
+        if (email == null || password == null)
+        {
+            return false;
+        }
+
+        if (Users.Any(u => u.Email == email))
+        {
+            return false;
+        }
+
+        Users.Add(new User
+        {
+            Name = name,
+            Email = email,
+            Password = password,
+            SoftDelete = false,
+            CreateDate = DateTime.Now
+        });
+
+        return true;
+    }
 }
+
