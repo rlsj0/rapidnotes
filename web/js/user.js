@@ -8,7 +8,7 @@ class User {
     }
 
     addNewUser(id, name, email, password, createDate, softDelete) {
-        fetch(`http://localhost:8080/Auth/login`, {
+        fetch(`http://localhost:8080/Auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,6 +24,24 @@ class User {
         })
             .then(response => response.json())
             .then(datos => console.log(datos))
+    }
+
+    loginUser(name, email, password) {
+        fetch(`http://localhost:8080/Auth/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "name": name,
+                "email": email,
+                "password": password,
+            })
+        })
+
+            .then(response => response.json())
+            .then(datos => console.log(datos))
+
     }
 
     modifyUser(id, name, email, password, createDate, softDelete) {
