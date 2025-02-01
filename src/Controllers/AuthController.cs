@@ -22,10 +22,21 @@ public class AuthController : ControllerBase
         if (user == null)
         {
             // Devuelve un StatusCode 401 (Unauthorized)
-            return Unauthorized();
+            return Unauthorized(new { message = "Incorrect user or password" });
         }
-        // Devuelve un Status de Ok junto con el id como token
+        // Devuelve un Status de Ok junto con el id en el body
         return Ok(user.Id);
+    }
+
+    [HttpPost("register")]
+    public IActionResult Register([FromBody] User loginRequest)
+    {
+        var success = UserServices.Register(loginRequest.Name, loginRequest.Email, loginRequest.Password);
+        if (!success)
+        {
+            return BadRequest(new { message = "Email already used" });
+        }
+        return Ok(new { message = "User registered" });
     }
 }
 
