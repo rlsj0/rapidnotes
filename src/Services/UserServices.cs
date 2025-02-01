@@ -60,7 +60,7 @@ public static class UserServices
             return false;
         }
 
-        Users.Add(new User
+        UserServices.Add(new User
         {
             Name = name,
             Email = email,
