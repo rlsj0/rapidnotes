@@ -1,0 +1,53 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+$mobile-breakpoint: 768px;
+$desktop-breakpoint: 1024px;
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    padding: 3rem;
+    color: $text-secondary;
+
+    &__login {
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .login {
+
+        &__form-title {
+            @include font($text-secondary, $font-size-h2, $font-subtitle-weight-bold, $font-subtitle)
+        }
+
+        &__form-label {
+            @include font($text-secondary, $font-size-body, $font-body-weight, $font-body)
+        }
+
+        &__form-input {
+            border: 2px solid $color-primary;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+          
+            &:focus {
+              border-color: $color-secondary;
+              box-shadow: 0 0 5px rgba($color-secondary, 0.75); // Sombra personalizada
+            }
+          }
+
+        &__form-button {
+            @include button-styles;
+        }
+
+
+
+    @media (min-width: $mobile-breakpoint) {
+        flex-direction: row; 
+        justify-content: space-around;
+        align-items: center;
+    }
+  }
+}

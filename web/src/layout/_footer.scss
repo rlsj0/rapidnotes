@@ -1,0 +1,56 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+$mobile-breakpoint: 768px;
+$desktop-breakpoint: 1024px;
+
+.footer {
+
+    background-color: $text-secondary;
+    width: 100%;
+    align-self: end;
+
+    &__container {
+        gap: 0.5rem;
+
+        &-copy {
+            @include font($text-secondary, $font-size-small, $font-body-weight, $font-body);
+            text-align: center;
+        }
+    }
+
+    &__contact {
+        @include flexConfig(center);
+        flex-direction:column;
+        text-align: center;
+
+        &-logo {
+            width: 100px;
+            margin-top: 10px;
+        }
+
+        &-item {
+            @include font ($color-primary, $font-size-small, $font-body-weight, $font-body);
+            margin: 0 !important;
+            padding: 3px;
+        }
+
+        &-list {
+            @include flexbox-center;
+            margin: 0px 0 2px 0;
+            margin-top: 10px;
+        }
+
+        &-icon {
+            height: 25px;
+            transition: 0.5s;
+            object-fit: cover;
+            margin-right: 15px;
+
+            &:hover { 
+                transform: scale(1.5);
+            }
+        }
+    }
+
+}

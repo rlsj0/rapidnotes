@@ -1,0 +1,65 @@
+@use '../base/variables' as *;
+
+
+//grid
+@mixin flexConfig($f) {
+  display: flex;
+  align-items: center;
+  justify-content: $f;
+}
+
+
+//alto/ancho
+@mixin box ($width, $height: $width) { 
+    width: $width;
+    height: $height;
+}
+
+//sombras
+@mixin box-shadow($h: 0, $v: 4px, $b: 10px, $s: 0, $c: rgba(0, 0, 0, 0.1)) {
+    box-shadow: $h $v $b $s $c;
+}
+
+//font
+@mixin font ($color, $font-size, $font-weight: 400, $font-family: 'Open sans') {
+    color: $color;
+    font: $font-weight $font-size $font-family;
+}
+
+//media queries para escritorio
+@mixin desktop {
+  @media (min-width: 1024px) { @content; }
+}
+
+//estilos de botones
+@mixin button-styles {
+  @include font ($color-primary, $font-size-small, $font-body-weight-bold, $font-body);
+  background-color: $color-secondary-soft60;
+  border: 1px solid $color-primary;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+      background-color: $color-secondary;
+  }
+}
+
+@mixin flexbox-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+//Alinear en el eje vertical
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}
+
