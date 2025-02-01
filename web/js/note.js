@@ -39,7 +39,12 @@ class Note {
             .catch((error) => console.log(error));
     }
 
-    // public Note(int userid, string title, string text, int priority)
-    // Borrar
-    // Search
+    deleteNote(id) {
+        fetch(`http://localhost:8080/Note/${id}`, {
+            method: "DELETE",
+        }).catch((error) => console.log(error));
+    }
+
+    // TODO:
+    searchNote() {}
 }
