@@ -1,33 +1,40 @@
 class Note {
-    // TODO: cuando esté hecho el html, coger de ahí los campos
-    
-    // Nota por usuario
+    // TODO: Pillar notas por usuario
 
-    // Agregar nota
-
-    function addNote() {
-        // TODO: cambiar los siguientes campos para que coja el html
-        let noteTitle = "title";
-        let noteText = "Some text";
-        let priority = 1;
-        let isActive = true;
-
-        // TODO: post
-
+    addNote(userId, title, text, priority) {
         fetch("http://localhost:8080/Notes", {
             method: "POST",
             body: JSON.stringify({
-                }),
+                "userId": userId,
+                "title": title,
+                "text": text,
+                "priority": priority,
+            }),
             headers: {
                 "Content-type": "application/json",
-            }
+            },
         })
-
-        return;
+            .then((response) => response.json())
+            .then((data) => console.log(data));
     }
 
-    addNote();
-    // Modificar
+    modifyNote(id, title, text, priority, isActive) {
+        fetch(`http://localhost:8080/Note/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "title": title,
+                "text": text,
+                "priority": priority,
+                "isActive": isActive,
+            }),
+        }).then((response) => console.log(response))
+            .catch((error) => console.log(error));
+    }
+
+    // public Note(int userid, string title, string text, int priority)
     // Borrar
     // Search
 }
