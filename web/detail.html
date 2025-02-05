@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RAPIDNOTES</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./build/style.css">
 </head>
+
 <body>
-    
+
     <header class="header">
         <div class="header__container">
 
@@ -18,11 +21,11 @@
                 <img class="header__logo" src="./img/FullColor2.png" alt="FullColorLogo">
             </a>
 
-            <!-- Button abrir menú-->    
+            <!-- Button abrir menú-->
             <button id="menu-toggle" class="header__button-open">
                 <span class="material-symbols-outlined">menu</span>
             </button>
-            
+
             <!-- Barra navegación-->
             <nav id="menu" class="header__nav">
                 <button id="menu-close" class="header__button-close">
@@ -59,7 +62,12 @@
 
             <div class="notes__buttons">
                 <button id="add-btn" type="button" class="notes__button notes__button--add btn mb-5">Añadir</button>
-                <button name="delnote" type="button" name="del-btn" id="del-btn" class="notes__buttons notes__button--delete btn mb-5 btn-danger" onclick="return false" disabled>Eliminar</button>
+                <button name="delnote" type="button" name="del-btn" id="del-btn"
+                    class="notes__buttons notes__button--delete btn mb-5 btn-danger" onclick="return false"
+                    disabled>Eliminar</button>
+                <button name="mod-note" type="button" name="mod-btn" id="mod-btn"
+                    class="notes__buttons notes__button--modify btn mb-5 btn-danger" onclick="return false"
+                    disabled>Modificar</button>
             </div>
 
 
@@ -70,21 +78,25 @@
 
             <div class=" notes__popup-container row justify-content-center" id="popup">
                 <div class="notes__popup-add border border-dark col-4 p-3">
-                  <h3 class="notes__popup-title">Nueva Nota</h3>
-                  <form class="notes__popup-form" name="addnoteform" id="formNote">
-                    <div class="mb-2">
-                      <label for="title" class="notes__popup-label form-label">Título</label>
-                      <input name="title" type="text" class="notes__popup-input form-control" id="title" required>
-                      <label for="description" class="notes__popup-label form-label">Texto</label>
-                      <textarea name="description" rows="3" class="notes__popup-input form-control" id="description"></textarea>
-                      <label for="priority" class="notes__popup-label form-label">Priority</label>
-                      <input name="priority" type="number" class="notes__popup-input form-control" id="priority" required>
-                    </div>
-                    <button id="close-btn" type="button" class="notes__popup-button--cancel btn btn-danger" onclick="return false">Cancelar</button>
-                    <button name="send" id="submit-btn" type="submit" class="notes__popup-button btn" disabled>OK</button>
-                  </form>
+                    <h3 class="notes__popup-title">Nueva Nota</h3>
+                    <form class="notes__popup-form" name="addnoteform" id="formNote">
+                        <div class="mb-2">
+                            <label for="title" class="notes__popup-label form-label">Título</label>
+                            <input name="title" type="text" class="notes__popup-input form-control" id="title" required>
+                            <label for="description" class="notes__popup-label form-label">Texto</label>
+                            <textarea name="description" rows="3" class="notes__popup-input form-control"
+                                id="description"></textarea>
+                            <label for="priority" class="notes__popup-label form-label">Priority</label>
+                            <input name="priority" type="number" class="notes__popup-input form-control" id="priority"
+                                required>
+                        </div>
+                        <button id="close-btn" type="button" class="notes__popup-button--cancel btn btn-danger"
+                            onclick="return false">Cancelar</button>
+                        <button name="send" id="submit-btn" type="submit" class="notes__popup-button btn"
+                            disabled>OK</button>
+                    </form>
                 </div>
-              </div>
+            </div>
 
         </section>
 
@@ -95,14 +107,19 @@
         <div class="footer__container">
 
             <section class="footer__contact">
-                <a href="./index.html"><img class="footer__contact-logo" src="./img/FullColor2.png" alt="Blue&WhiteLogo"></a>
-                <a href="#" src="./img/icons/mail.svg" ></a>
+                <a href="./index.html"><img class="footer__contact-logo" src="./img/FullColor2.png"
+                        alt="Blue&WhiteLogo"></a>
+                <a href="#" src="./img/icons/mail.svg"></a>
                 <!--<p class="footer__contact-item">rapidnotes@mail.es</p>-->
                 <ul class="footer__contact-list">
-                    <li><a href="#"><img class="footer__contact-icon" src="./img/icons/GithubVerde.svg" alt="Github"></a></li>   
-                    <li><a href="#"><img class="footer__contact-icon" src="./img/icons/InstaVerde.svg" alt="instagramLink"></a></li>
-                    <li><a href="#"><img class="footer__contact-icon" src="./img/icons/TiktokVerde.svg" alt="tiktokLink"></a></li>
-                    <li><a href="#"><img class="footer__contact-icon" src="./img/icons/TwitterVerde.svg" alt="tiktokLink"></a></li>
+                    <li><a href="#"><img class="footer__contact-icon" src="./img/icons/GithubVerde.svg"
+                                alt="Github"></a></li>
+                    <li><a href="#"><img class="footer__contact-icon" src="./img/icons/InstaVerde.svg"
+                                alt="instagramLink"></a></li>
+                    <li><a href="#"><img class="footer__contact-icon" src="./img/icons/TiktokVerde.svg"
+                                alt="tiktokLink"></a></li>
+                    <li><a href="#"><img class="footer__contact-icon" src="./img/icons/TwitterVerde.svg"
+                                alt="tiktokLink"></a></li>
                 </ul>
             </section>
 
@@ -119,4 +136,5 @@
     <script src="./js/note.js" type="module"></script>
     <script src="./js/utils/errorUtils.js" type="module"></script>
 </body>
+
 </html>
