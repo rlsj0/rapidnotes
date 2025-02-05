@@ -1,18 +1,23 @@
 class Note {
 
 
-    async getNotesByUserId(userid) {
+    async getNotesByUserId(userid, callback) {
         return await fetch(`http://localhost:5207/Note/notes/${userid}`)
-            .then((response) => response.json)
+            .then((response) => response.json())
             .then((data) => {
                 console.log(data)
+
+                if (callback){
+                    console.log("Realizando función callback")
+                    callback(data);
+                }
                 return data;});
     }
 
     
 
-    addNote(userId, title, text, priority) {
-        fetch("http://localhost:5207/Note", {
+    async addNote(userId, title, text, priority, callback) {
+        return await fetch("http://localhost:5207/Note", {
             method: "POST",
             body: JSON.stringify({
                 "userId": userId,
@@ -25,7 +30,14 @@ class Note {
             },
         })
             .then((response) => response.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+                console.log(data)  
+                
+                if (callback){
+                    console.log("Realizando función callback")
+                    callback();
+                }
+            });
     }
 
 

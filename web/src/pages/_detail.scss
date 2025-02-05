@@ -16,7 +16,7 @@
     }
 
     &__actions {
-        display: flex;
+        @include flexConfig(center);
         flex-direction: column;
     }
 
