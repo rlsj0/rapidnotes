@@ -1,4 +1,5 @@
 import User from './user.js'
+const user = new User();
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
@@ -24,14 +25,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
     event.preventDefault();
-    const userIdLogged = User.loginUser(inputEmail, inputPassword).then(function(userIdLogged) {
+    const userIdLogged = user.loginUser(inputEmail, inputPassword).then(function(userIdLogged) {
 
       console.log(userIdLogged);
 
       if (userIdLogged) {
         sessionStorage.setItem("userId", userIdLogged);
         console.log(userIdLogged);
-        window.location.href = "detail.html";
+        window.location.href = 'detail.html#/'+ userIdLogged;
       } else {
         alert("Usuario o contraseña incorrectos");
       }
