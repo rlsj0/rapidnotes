@@ -44,9 +44,48 @@
     </header>
 
 
-    <main class="main">
+    <main class="notes">
 
-        <section class="main__notes" id="main-notes">
+        <h2 class="notes__title">Notas</h2>
+
+        <!-- Actions -->
+        <section class="notes__actions">
+
+
+            <form class="notes__form">
+                <span class="notes__form-icon material-symbols-outlined">search</span>
+                <input class="notes__form-input" type="search" placeholder="Buscar">
+            </form>
+
+            <div class="notes__buttons">
+                <button id="add-btn" type="button" class="notes__button notes__button--add btn mb-5">Añadir</button>
+                <button name="delnote" type="button" name="del-btn" id="del-btn" class="notes__buttons notes__button--delete btn mb-5 btn-danger" onclick="return false" disabled>Eliminar</button>
+            </div>
+
+
+            <div class="notes__container" id="notes-container">
+
+            </div>
+
+
+            <div class=" notes__popup-container row justify-content-center" id="popup">
+                <div class="notes__popup-add border border-dark col-4 p-3">
+                  <h3 class="notes__popup-title">Nueva Nota</h3>
+                  <form class="notes__popup-form" name="addnoteform" id="formNote">
+                    <div class="mb-2">
+                      <label for="title" class="notes__popup-label form-label">Título</label>
+                      <input name="title" type="text" class="notes__popup-input form-control" id="title" required>
+                      <label for="description" class="notes__popup-label form-label">Texto</label>
+                      <textarea name="description" rows="3" class="notes__popup-input form-control" id="description"></textarea>
+                      <label for="priority" class="notes__popup-label form-label">Priority</label>
+                      <input name="priority" type="number" class="notes__popup-input form-control" id="priority" required>
+                    </div>
+                    <button id="close-btn" type="button" class="notes__popup-button--cancel btn btn-danger" onclick="return false">Cancelar</button>
+                    <button name="send" id="submit-btn" type="submit" class="notes__popup-button btn" disabled>OK</button>
+                  </form>
+                </div>
+              </div>
+
         </section>
 
     </main>

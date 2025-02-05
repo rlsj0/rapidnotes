@@ -42,7 +42,7 @@ class User {
             
     // }
 
-    static async loginUser(email, password) {
+    async loginUser(email, password) {
         try {
             const response = await fetch(`http://localhost:5207/Auth/login`, {
                 method: 'POST',

@@ -1,0 +1,79 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+
+.notes {
+    flex: 1;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    padding: 2rem;
+    color: $text-secondary;
+
+    &__title {
+        @include font($text-secondary, $font-size-h2, $font-subtitle-weight-bold, $font-subtitle);
+        margin-bottom: 2rem;
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__form {
+        @include flex-center-vert;
+        width: max-content;
+        padding: 5px;
+        border-radius: 5px;
+        background: $color-bg;
+        transition: box-shadow 0.25s;
+        border: 2px solid $color-secondary;
+        margin-bottom: 1rem;
+
+        &:focus-within {
+            @include box-shadow($shadow);
+        }
+
+        &-input {
+            @include font ($text-primary, $font-size-body, $font-body-weight, $font-body);
+            color: $color-primary;
+            margin-left: 10px;
+            outline: none;
+            border: none;
+            background: transparent;
+            width: 300px;
+
+            &::placeholder {
+                color: rgba(0, 0, 0, 0.25);
+            }
+        }
+
+        &-icon {
+            color: rgba(0, 0, 0, 0.25);
+        }
+    }
+
+    &__buttons {
+        @include flexbox-center;
+        gap: 10px;
+    }
+
+    &__button--add {
+        @include button-styles;
+    }
+
+
+    &__container {
+
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+
+        &-title {
+            @include font($text-secondary, $font-size-h3, $font-subtitle-weight, $font-subtitle);
+            margin-bottom: 2rem;
+        }
+    }
+
+
+}

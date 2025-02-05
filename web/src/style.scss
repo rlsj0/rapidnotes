@@ -4,7 +4,7 @@
 @use 'base/mixins' as *;
 
 //Importar archivos de carpeta components
-
+@use 'components/popup' as *;
 
 //Importar archivos de carpeta layout
 @use 'layout/footer';

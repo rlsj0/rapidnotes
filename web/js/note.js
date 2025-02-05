@@ -1,11 +1,15 @@
 class Note {
-    static async getNotesByUserId(userid) {
+
+
+    async getNotesByUserId(userid) {
         return await fetch(`http://localhost:5207/Note/notes/${userid}`)
             .then((response) => response.json)
             .then((data) => {
                 console.log(data)
                 return data;});
     }
+
+    
 
     addNote(userId, title, text, priority) {
         fetch("http://localhost:5207/Note", {
@@ -23,6 +27,7 @@ class Note {
             .then((response) => response.json())
             .then((data) => console.log(data));
     }
+
 
     modifyNote(id, title, text, priority, isActive) {
         fetch(`http://localhost:5207/Note/${id}`, {
