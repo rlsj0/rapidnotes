@@ -1,0 +1,57 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.notes {
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        overflow:hidden;
+        padding:3em;
+
+        &-element {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            margin: 10px;
+            justify-content: center;
+
+        }
+
+        &-link {
+            text-decoration:none;
+            color: $color-primary;
+            background:$color-secondary-soft60;
+            display:block;
+            height:300px;
+            width:300px;
+            padding:1em;
+            display: inline-block;
+            /* Firefox */
+            -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+            /* Safari+Chrome */
+            -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+            /* Opera */
+            box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+
+            &:hover, &:focus {
+                -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
+                -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+                box-shadow:10px 10px 7px rgba(0,0,0,.7);
+                -webkit-transform: scale(1.15);
+                -moz-transform: scale(1.15);
+                -o-transform: scale(1.15);
+                position:relative;
+                z-index:5;
+            }
+        }
+
+        &-title {
+            @include font($color-primary, $font-size-h3, $font-subtitle-weight, $font-subtitle);
+        }
+
+        &-text {
+            @include font ($color-primary, $font-size-body, $font-body-weight, $font-body);
+        }
+    }
+}
