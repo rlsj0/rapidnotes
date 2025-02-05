@@ -8,7 +8,7 @@ class Note {
                 console.log(data)
 
                 if (callback){
-                    console.log("Realizando función callback")
+                    console.log("Realizando función callback después de getNotes")
                     callback(data);
                 }
                 return data;});
@@ -34,7 +34,7 @@ class Note {
                 console.log(data)  
                 
                 if (callback){
-                    console.log("Realizando función callback")
+                    console.log("Realizando función callback después de addNote")
                     callback();
                 }
             });
@@ -57,10 +57,31 @@ class Note {
             .catch((error) => console.log(error));
     }
 
-    deleteNote(id) {
-        fetch(`http://localhost:5207/Note/${id}`, {
+    async deleteNote(id, callback) {
+        return await fetch(`http://localhost:5207/Note/${id}`, {
             method: "DELETE",
-        }).catch((error) => console.log(error));
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
+            }
+    
+            console.log('Nota eliminada con éxito');
+    
+            return response.status === 204 ? null : response.json();
+        })
+        .then((data) => {
+            console.log("Nota eliminada:" + data)  
+            
+            if (callback){
+                console.log("Realizando función callback después de deleteNote")
+                callback();
+            }
+        })
+        .catch((error) => {
+            console.error("Error al eliminar la nota: " + error)
+        })
+        
     }
 
     async searchNote(userId, title, creationDate, priority, isActive) {

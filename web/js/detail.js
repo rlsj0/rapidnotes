@@ -2,7 +2,14 @@ import User from './user.js'
 import Note from './note.js'
 const note = new Note();
 
+let noteSelected = null;
+
+//Obtener userId del sessionStorage guardado en Login
+const userId = Number(sessionStorage.getItem("userId"));
+
+
 window.addEventListener('DOMContentLoaded', (event) => {
+
 
     //lógica para menú navegación en mobile
     document.getElementById("menu-toggle").addEventListener("click", function() {
@@ -12,7 +19,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("menu-close").addEventListener("click", function() {
         document.getElementById("menu").classList.remove("active");
     });
-    
     
 
     //Comprobación título al añadir nota en popup
@@ -30,10 +36,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     submitCategory. addEventListener('click', () =>  popup.classList.remove("notes__popup-container--show"))
 
 
-
-    //Obtener userId del sessionStorage guardado en Login
-    const userId = Number(sessionStorage.getItem("userId"));
-
     //Cargando notas iniciales
     console.log("Cargando notas para el usuario ID:", userId);
     note.getNotesByUserId(userId, drawNotes);
@@ -41,6 +43,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     console.log('Hola script detalle');
   })
+
+
+
+const deleteButton = document.querySelector("#del-btn");
+deleteButton.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  let userId = Number(sessionStorage.getItem('userId'));
+  console.log('Leyendo de nuevo el userID' + userId);
+
+
+  console.log("Esta es la nota seleccionada" + noteSelected);
+  note.deleteNote(noteSelected, () => {
+    console.log("Actualizando notas tras eliminar")
+    note.getNotesByUserId(userId, drawNotes);
+  })
+
+  clearSelection();
+});
 
 
 
@@ -67,15 +88,17 @@ function drawNotes(data) {
     noteUl.classList.add('notes__list');
     notesContainer.appendChild(noteUl);
 
+    //Se crean los elementos
     data.forEach(note => {
         
         //Cada nota
         const noteElement = document.createElement('li');
+        noteElement.setAttribute('data-id', note.id)
         noteElement.classList.add('notes__list-element');
 
         //Cada link de nota
         const noteLink =  document.createElement('a');
-        noteLink.href = '#'
+        noteLink.href = 'detail.html#/'+ userId;
         noteLink.classList.add('notes__list-link')
 
         //Cada titulo nota
@@ -94,7 +117,52 @@ function drawNotes(data) {
         noteLink.appendChild(noteText);
 
     });
+
+    //Seleccionamos la Lista de notas y el boton delete
+    const listItems = document.querySelectorAll('.notes__list-element');
+    const deleteButton = document.getElementById('del-btn');
+
+    listItems.forEach(note => {
+
+        note.addEventListener('click', function(event) {
+    
+            if (this.classList.contains('notes__list-element--active')) {
+              // Quitamos la clase activa y reseteamos el selectedId
+              this.classList.remove('notes__list-element--active');
+              this.querySelector('a').blur();
+              
+              clearSelection();
+              
+            } else {
+              
+              noteSelected = this.getAttribute('data-id');
+              console.log("Esta es la nota seleccionada: " + noteSelected);
+              document.querySelectorAll('.notes__list-element').forEach(element => {
+                element.classList.remove('notes__list-element--active');
+              });
+        
+              this.classList.add('notes__list-element--active');
+              deleteButton.disabled = false;
+    
+              // hash de ruta modificado
+              //window.location.hash = `/${selectedId}`
+            }
+        });
+        
+    });
 }
+
+
+
+document.addEventListener("click", function(event) {
+    const clickedInsideNote = event.target.closest(".notes__list-element");
+
+    if (!clickedInsideNote) { 
+        
+        console.log("🔹 Clic fuera de la lista, limpiando selección...");
+        clearSelection();
+    }
+});
 
 
 
@@ -110,6 +178,16 @@ function checkTitle() {
     } else {
       submitButton.disabled = false
     }
+  }
+
+
+  function clearSelection() {
+    noteSelected = null;
+    deleteButton.disabled = true;
+    console.log('Selección limpia, botón deshabilitado')
+  
+    //se limpia hash si no hay categoria seleccionada
+    //window.location.hash = '';
   }
 
 
