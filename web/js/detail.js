@@ -182,6 +182,21 @@ function drawNotes(data) {
     noteLink.appendChild(noteTitle);
     noteLink.appendChild(noteText);
 
+
+    //Evento para cuando se hace doble click, abrir nota para modificar
+    noteElement.addEventListener('dblclick', async function () {
+      noteSelected = note.id;
+
+      const noteValue = await noteClass.getNoteById(noteSelected);
+      document.querySelector('#title').value = noteValue.title;
+      document.querySelector('#description').value = noteValue.text;
+      document.querySelector('#priority').value = noteValue.priority;
+
+      console.log("Editando nota: ", noteValue);
+      
+      popup.classList.add("notes__popup-container--show");
+    });
+
   });
 
   //Seleccionamos la Lista de notas y el boton delete
