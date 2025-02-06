@@ -10,15 +10,50 @@ const userId = Number(sessionStorage.getItem("userId"));
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
+    //lógica para menú navegación en mobile
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+        document.getElementById("menu").classList.add("active");
+    });
 
-  //lógica para menú navegación en mobile
-  document.getElementById("menu-toggle").addEventListener("click", function () {
-    document.getElementById("menu").classList.add("active");
-  });
+    document.getElementById("menu-close").addEventListener("click", function() {
+        document.getElementById("menu").classList.remove("active");
+    });
 
-  document.getElementById("menu-close").addEventListener("click", function () {
-    document.getElementById("menu").classList.remove("active");
-  });
+
+    //Evento keyup + setTimeOut para no realizar tantas busquetas a API
+    const searchInput = document.querySelector(".notes__form-input");
+    let timer;
+
+    searchInput.addEventListener("keyup", function () {
+        clearTimeout(timer);
+
+        //Se establecen 2 segundos de diferencia para buscar en api
+        timer = setTimeout(()=>  {
+
+            const searchQuery = this.value.trim();
+
+            //Comprobación si hay algo escrito
+            if (searchQuery.length > 0) { 
+                console.log(" Buscando notas con: " + searchQuery);
+    
+                let title = null;
+                let priority = null;
+
+                //Comprobación si es número o texto
+                if (!isNaN(searchQuery) && searchQuery !== "") { 
+                    priority = searchQuery;
+                } else { 
+                    title = searchQuery;
+                }
+
+                note.searchNote(userId, title, "", priority, "", drawNotes);
+            } else {
+                note.getNotesByUserId(userId, drawNotes);
+            }
+
+        }, 200);
+    });
+    
 
 
   //Comprobación título al añadir nota en popup
@@ -88,7 +123,7 @@ function drawNotes(data) {
   const notesContainer = document.getElementById("notes-container");
   notesContainer.innerHTML = "";
 
-  console.log("Length de data" + data.length)
+  console.log("Length de data " + data.length)
 
   //Comprobación notas -> mostrar no hay notas
   if (!data || data.length === 0) {
@@ -171,7 +206,7 @@ function drawNotes(data) {
 }
 
 
-
+//Evento click cuando es fuera de nota, popup y modificar
 document.addEventListener("click", function (event) {
   const clickedInsideNote = event.target.closest(".notes__list-element");
   const clickedInsideNoteModify = event.target.closest("#modify-btn");
@@ -179,7 +214,7 @@ document.addEventListener("click", function (event) {
 
   if (!clickedInsideNote && !clickedInsideNoteModify && !clickedInsideNotePopup) {
 
-    console.log("🔹 Clic fuera de la lista, limpiando selección...");
+    console.log("Clic fuera de la lista, limpiando selección...");
     clearSelection();
   }
 });
@@ -190,17 +225,17 @@ document.addEventListener("click", function (event) {
 //Check titulo al añadir nueva nota
 function checkTitle() {
 
-  const noteInput = document.querySelector('#title');
-  const submitButton = document.querySelector('#submit-btn');
+    const noteInput = document.querySelector('#title');
+    const submitButton = document.querySelector('#submit-btn');
 
-  if (noteInput.value === '') {
+    if (noteInput.value === '') {
     submitButton.disabled = true
-  } else {
+    } else {
     submitButton.disabled = false
-  }
+    }
 }
 
-
+//Limpiar seleccion y bloqueo de botón delete
 function clearSelection() {
   noteSelected = null;
   deleteButton.disabled = true;
@@ -240,4 +275,10 @@ formNote.addEventListener('submit', async function (event) {
   //reseteo de formulario
   formNote.reset();
 })
+
+
+
+
+
+
 
