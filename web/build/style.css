@@ -90,12 +90,12 @@ html, body {
   justify-content: center;
 }
 .notes__list-link {
+  width: 300px;
+  height: 300px;
   text-decoration: none;
   color: #1F818C;
   background: #F5FC9E;
   display: block;
-  height: 300px;
-  width: 300px;
   padding: 1em;
   display: inline-block;
   /* Firefox */
@@ -338,25 +338,43 @@ html, body {
 .main__login {
   width: 100%;
   max-width: 800px;
+  justify-content: center;
 }
-.main .login__form-title {
+@media (min-width: 768px) {
+  .main {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.login__form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+.login__form-title {
   color: #ffffff;
   font: 700 30px "Roboto", sans-serif;
 }
-.main .login__form-label {
+.login__form-label {
   color: #ffffff;
   font: 400 16px "Open Sans Pro", sans-serif;
 }
-.main .login__form-input {
+.login__form-input {
   border: 2px solid #1F818C;
   outline: none;
   transition: all 0.3s ease-in-out;
+  width: 350px;
 }
-.main .login__form-input:focus {
+.login__form-input:focus {
   border-color: #EffA5D;
   box-shadow: 0 0 5px rgba(239, 250, 93, 0.75);
 }
-.main .login__form-button {
+.login__form-button {
   color: #1F818C;
   font: 700 14px "Open Sans Pro", sans-serif;
   background-color: #F5FC9E;
@@ -366,15 +384,8 @@ html, body {
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
-.main .login__form-button:hover {
+.login__form-button:hover {
   background-color: #EffA5D;
-}
-@media (min-width: 768px) {
-  .main .login {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-  }
 }
 
 .notes {

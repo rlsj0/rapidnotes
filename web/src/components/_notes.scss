@@ -19,12 +19,11 @@
         }
 
         &-link {
+            @include box (300px, 300px);
             text-decoration:none;
             color: $color-primary;
             background:$color-secondary-soft60;
             display:block;
-            height:300px;
-            width:300px;
             padding:1em;
             display: inline-block;
             /* Firefox */
