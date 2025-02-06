@@ -40,8 +40,9 @@ html, body {
 }
 .notes__popup-add {
   background: #F5FC9E;
-  border-radius: 5px;
-  padding: 20px;
+  padding: 1em;
+  height: 400px;
+  width: 400px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .notes__popup-title {
@@ -51,6 +52,14 @@ html, body {
 .notes__popup-label, .notes__popup-input {
   color: #1F818C;
   font: 400 16px "Open Sans Pro", sans-serif;
+  background-color: #F5FC9E;
+  border-color: #1F818C;
+}
+.notes__popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
 }
 .notes__popup-button {
   color: #EffA5D;
