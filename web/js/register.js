@@ -1,4 +1,5 @@
 import User from './user.js'
+import { notifyOK, notifyKO } from './utils/notificationsUtils.js';
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
@@ -26,6 +27,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
      event.preventDefault();
      User.addNewUser(inputName, inputEmail, inputPassword)
+     notifyOK("Usuario registrado correctamente");
      console.log(inputEmail, inputPassword, inputName)
        
    })

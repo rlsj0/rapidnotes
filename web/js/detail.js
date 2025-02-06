@@ -1,5 +1,7 @@
 import User from './user.js'
 import Note from './note.js'
+import { notifyOK, notifyKO } from './utils/notificationsUtils.js';
+
 const noteClass = new Note();
 
 let noteSelected = null;
@@ -92,6 +94,7 @@ deleteButton.addEventListener('click', (event) => {
 
   console.log("Esta es la nota seleccionada" + noteSelected);
   noteClass.deleteNote(noteSelected, () => {
+    notifyKO("Nota eliminada con éxito");
     console.log("Actualizando notas tras eliminar")
     noteClass.getNotesByUserId(userId, drawNotes);
   })
@@ -261,14 +264,16 @@ formNote.addEventListener('submit', async function (event) {
   //Tras añadir nota, refrescar lista (callback)
   if (noteSelected == null) {
     noteClass.addNote(userId, noteTitle, noteDescription, notePriority, () => {
-      console.log("Actualizando notas tras añadir")
-      noteClass.getNotesByUserId(userId, drawNotes);
+        notifyOK("Nota añadida con éxito");
+        console.log("Actualizando notas tras añadir")
+        noteClass.getNotesByUserId(userId, drawNotes);
     });
   } else {
     noteClass.modifyNote(noteSelected, userId, noteTitle, noteDescription, notePriority, true, () => {
-      console.log("Actualizando notas tras añadir")
-      noteClass.getNotesByUserId(userId, drawNotes);
-    });
+        notifyOK("Nota modificada con éxito");
+        console.log("Actualizando notas tras modificar")
+        noteClass.getNotesByUserId(userId, drawNotes);
+        });
   }
 
 

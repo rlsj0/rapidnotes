@@ -1,4 +1,6 @@
 import User from './user.js'
+import { notifyOK, notifyKO } from './utils/notificationsUtils.js';
+
 const user = new User();
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -30,11 +32,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
       console.log(userIdLogged);
 
       if (userIdLogged) {
+        notifyOK("Sesión iniciada");
         sessionStorage.setItem("userId", userIdLogged);
         console.log(userIdLogged);
-        window.location.href = 'detail.html#/'+ userIdLogged;
+
+        setTimeout( () => {
+          window.location.href = 'detail.html#/'+ userIdLogged;
+        }, 1200)
+        
       } else {
-        alert("Usuario o contraseña incorrectos");
+        notifyKO("Usuario o contraseña incorrectos");
       }
     })
   })
