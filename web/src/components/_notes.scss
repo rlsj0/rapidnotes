@@ -48,10 +48,18 @@
 
         &-title {
             @include font($color-primary, $font-size-h3, $font-subtitle-weight, $font-subtitle);
+            overflow: auto;
         }
 
         &-text {
             @include font ($color-primary, $font-size-body, $font-body-weight, $font-body);
+            max-height: 225px;
+            overflow: auto;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: #1F818C rgba(0, 0, 0, 0.1);
         }
     }
 }

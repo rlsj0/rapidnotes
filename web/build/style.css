@@ -109,10 +109,18 @@ html, body {
 .notes__list-title {
   color: #1F818C;
   font: 500 22px "Roboto", sans-serif;
+  overflow: auto;
 }
 .notes__list-text {
   color: #1F818C;
   font: 400 16px "Open Sans Pro", sans-serif;
+  max-height: 225px;
+  overflow: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #1F818C rgba(0, 0, 0, 0.1);
 }
 
 .footer {
