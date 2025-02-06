@@ -64,13 +64,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   //Lógica para abrir y cerrar formulario popup
-  const closeCategory = document.getElementById('close-btn')
-  const addCategory = document.getElementById('add-btn')
-  const submitCategory = document.getElementById('submit-btn')
+  const closePopup = document.getElementById('close-btn')
+  const addPopup = document.getElementById('add-btn')
+  const submitPopup = document.getElementById('submit-btn')
 
-  addCategory.addEventListener('click', () => popup.classList.add("notes__popup-container--show"))
-  closeCategory.addEventListener('click', () => popup.classList.remove("notes__popup-container--show"))
-  submitCategory.addEventListener('click', () => popup.classList.remove("notes__popup-container--show"))
+  addPopup.addEventListener('click', () => popup.classList.add("notes__popup-container--show"))
+  closePopup.addEventListener('click', () => {
+    popup.classList.remove("notes__popup-container--show")
+    formNote.reset();
+    noteSelected = null;
+  });
+  submitPopup.addEventListener('click', () => popup.classList.remove("notes__popup-container--show"))
 
 
   //Cargando notas iniciales
