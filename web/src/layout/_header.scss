@@ -74,6 +74,9 @@ $desktop-breakpoint: 1024px;
     &__button-login {
         @include button-styles;
         display: none;
+        width: 100px;
+        text-align: center;
+        text-decoration: none;
     }
 
 

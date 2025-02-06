@@ -250,6 +250,9 @@ html, body {
   transition: background-color 0.3s ease;
   cursor: pointer;
   display: none;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
 }
 .header__button-login:hover {
   background-color: #EffA5D;

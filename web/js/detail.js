@@ -54,6 +54,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
 
         }, 200);
+
+
+
+        
     });
     
 
@@ -90,6 +94,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
   //Cargando notas iniciales
   console.log("Cargando notas para el usuario ID:", userId);
   noteClass.getNotesByUserId(userId, drawNotes);
+
+
+//Evento logout
+  const logoutButton = document.querySelector(".header__button-login");
+    logoutButton.addEventListener("click", () => {
+        console.log("Cerrando sesión");
+
+        sessionStorage.removeItem("userId");
+        notifyOK("Sesión cerrada correctamente");
+
+        setTimeout(() => {
+            window.location.href = "./index.html";
+        }, 1200);
+    });
 
 
   console.log('Hola script detalle');
