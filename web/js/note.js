@@ -1,6 +1,11 @@
 class Note {
+    constructor() {
+        this.baseUrl =
+            `${window.location.protocol}//${window.location.hostname}:8080/Note`;
+    }
+
     async getNoteById(noteid, callback) {
-        return await fetch(`http://localhost:8080/Note/${noteid}`)
+        return await fetch(`${this.baseUrl}/${noteid}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -16,7 +21,7 @@ class Note {
     }
 
     async getNotesByUserId(userid, callback) {
-        return await fetch(`http://localhost:8080/Note/notes/${userid}`)
+        return await fetch(`${this.baseUrl}/notes/${userid}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -32,7 +37,7 @@ class Note {
     }
 
     async addNote(userId, title, text, priority, callback) {
-        return await fetch("http://localhost:8080/Note", {
+        return await fetch(this.baseUrl, {
             method: "POST",
             body: JSON.stringify({
                 "userId": userId,
@@ -58,7 +63,7 @@ class Note {
     }
 
     modifyNote(id, userId, title, text, priority, isActive, callback) {
-        fetch(`http://localhost:8080/Note/${id}`, {
+        fetch(`${this.baseUrl}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -86,7 +91,7 @@ class Note {
     }
 
     async deleteNote(id, callback) {
-        return await fetch(`http://localhost:8080/Note/${id}`, {
+        return await fetch(`${this.baseUrl}/${id}`, {
             method: "DELETE",
         })
             .then((response) => {
@@ -123,7 +128,7 @@ class Note {
         isActive,
         callback,
     ) {
-        const url = new URL(`http://localhost:8080/Note/search/${userId}`);
+        const url = new URL(`${this.baseUrl}/search/${userId}`);
 
         if (title) url.searchParams.append("title", title);
         if (creationDate) url.searchParams.append("creationDate", creationDate);
