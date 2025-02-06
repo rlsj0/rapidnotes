@@ -81,12 +81,14 @@
                       <label for="title" class="notes__popup-label form-label">Título</label>
                       <input name="title" type="text" class="notes__popup-input form-control" id="title" required>
                       <label for="description" class="notes__popup-label form-label">Texto</label>
-                      <textarea name="description" rows="3" class="notes__popup-input form-control" id="description"></textarea>
-                      <label for="priority" class="notes__popup-label form-label">Priority</label>
+                      <textarea name="description" rows="6" class="notes__popup-input form-control" id="description"></textarea>
+                      <label for="priority" class="notes__popup-label form-label">Prioridad</label>
                       <input name="priority" type="number" class="notes__popup-input form-control" id="priority" required>
                     </div>
-                    <button id="close-btn" type="button" class="notes__popup-button--cancel btn btn-danger" onclick="return false">Cancelar</button>
-                    <button name="send" id="submit-btn" type="submit" class="notes__popup-button btn" disabled>OK</button>
+                    <div class="notes__popup-buttons">
+                        <button id="close-btn" type="button" class="notes__popup-button--cancel btn btn-danger" onclick="return false">Cancelar</button>
+                        <button name="send" id="submit-btn" type="submit" class="notes__popup-button btn" disabled>OK</button>
+                    </div>
                   </form>
                 </div>
               </div>

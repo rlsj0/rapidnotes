@@ -40,8 +40,9 @@ html, body {
 }
 .notes__popup-add {
   background: #F5FC9E;
-  border-radius: 5px;
-  padding: 20px;
+  padding: 1em;
+  height: 400px;
+  width: 400px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .notes__popup-title {
@@ -51,6 +52,14 @@ html, body {
 .notes__popup-label, .notes__popup-input {
   color: #1F818C;
   font: 400 16px "Open Sans Pro", sans-serif;
+  background-color: #F5FC9E;
+  border-color: #1F818C;
+}
+.notes__popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
 }
 .notes__popup-button {
   color: #EffA5D;
@@ -97,9 +106,9 @@ html, body {
   box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
 }
 .notes__list-link:hover, .notes__list-link:focus {
-  -moz-box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
-  -webkit-box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
-  box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 10px 10px 7px rgb(69, 72, 28);
+  -webkit-box-shadow: 10px 10px 7px rgb(69, 72, 28);
+  box-shadow: 10px 10px 7px rgb(69, 72, 28);
   -webkit-transform: scale(1.15);
   -moz-transform: scale(1.15);
   -o-transform: scale(1.15);
@@ -109,10 +118,18 @@ html, body {
 .notes__list-title {
   color: #1F818C;
   font: 500 22px "Roboto", sans-serif;
+  overflow: auto;
 }
 .notes__list-text {
   color: #1F818C;
   font: 400 16px "Open Sans Pro", sans-serif;
+  max-height: 225px;
+  overflow: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #1F818C rgba(0, 0, 0, 0.1);
 }
 
 .footer {
