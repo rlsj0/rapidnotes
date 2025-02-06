@@ -109,12 +109,30 @@ class Note {
 
     }
 
-    async searchNote(userId, title, creationDate, priority, isActive) {
-        return await fetch(
-            `http://localhost:5207/Note/search/${userId}?title=${title}&creationDate=${creationDate}&priority=${priority}&IsActive=${isActive}`,
-        )
-            .then((response) => response.json)
-            .then((data) => console.log(data));
+    async searchNote(userId, title, creationDate, priority, isActive, callback) {
+
+        const url = new URL(`http://localhost:5207/Note/search/${userId}`);
+
+        if (title) url.searchParams.append("title", title);
+        if (creationDate) url.searchParams.append("creationDate", creationDate);
+        if (priority) url.searchParams.append("priority", priority);
+        if (isActive) url.searchParams.append("IsActive", isActive);
+
+        return await fetch(url.toString())
+        
+        .then(response => response.json())
+        .then((data) => {
+            console.log(data)
+
+            if (callback){
+                console.log("Realizando función callback después de searchNote")
+                callback(data);
+            }
+            return data;})
+            
+        .catch((error) => {
+            console.error("Error al buscar: " + error)
+        })
     }
 }
 
