@@ -74,13 +74,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     formNote.reset();
     checkTitle();
     popup.classList.add("notes__popup-container--show")
+    clearSelection();
   })
 
   closePopup.addEventListener('click', () => {
     popup.classList.remove("notes__popup-container--show")
     formNote.reset();
     noteSelected = null;
+    clearSelection();
   });
+
   submitPopup.addEventListener('click', () => popup.classList.remove("notes__popup-container--show"))
 
 
