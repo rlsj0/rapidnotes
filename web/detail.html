@@ -59,6 +59,7 @@
 
             <div class="notes__buttons">
                 <button id="add-btn" type="button" class="notes__button notes__button--add btn mb-5">Añadir</button>
+                <button id="modify-btn" type="button" class="notes__button notes__button--add btn mb-5" disabled>Modificar</button>
                 <button name="delnote" type="button" name="del-btn" id="del-btn" class="notes__buttons notes__button--delete btn mb-5 btn-danger" onclick="return false" disabled>Eliminar</button>
             </div>
 
@@ -73,6 +74,7 @@
                   <h3 class="notes__popup-title">Nueva Nota</h3>
                   <form class="notes__popup-form" name="addnoteform" id="formNote">
                     <div class="mb-2">
+                    
                       <label for="title" class="notes__popup-label form-label">Título</label>
                       <input name="title" type="text" class="notes__popup-input form-control" id="title" required>
                       <label for="description" class="notes__popup-label form-label">Texto</label>
