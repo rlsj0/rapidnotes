@@ -1,5 +1,18 @@
 class Note {
 
+    async getNoteById(noteid, callback) {
+        return await fetch(`http://localhost:5207/Note/${noteid}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+
+                if (callback) {
+                    console.log("Realizando función callback después de getNotesByIdNote")
+                    callback(data);
+                }
+                return data;
+            });
+    }
 
     async getNotesByUserId(userid, callback) {
         return await fetch(`http://localhost:5207/Note/notes/${userid}`)
@@ -7,14 +20,15 @@ class Note {
             .then((data) => {
                 console.log(data)
 
-                if (callback){
+                if (callback) {
                     console.log("Realizando función callback después de getNotes")
                     callback(data);
                 }
-                return data;});
+                return data;
+            });
     }
 
-    
+
 
     async addNote(userId, title, text, priority, callback) {
         return await fetch("http://localhost:5207/Note", {
@@ -31,9 +45,9 @@ class Note {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data)  
-                
-                if (callback){
+                console.log(data)
+
+                if (callback) {
                     console.log("Realizando función callback después de addNote")
                     callback();
                 }
@@ -41,47 +55,58 @@ class Note {
     }
 
 
-    modifyNote(id, title, text, priority, isActive) {
+    modifyNote(id, userId, title, text, priority, isActive, callback) {
         fetch(`http://localhost:5207/Note/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                "id": id,
+                "userId" : userId,
                 "title": title,
                 "text": text,
                 "priority": priority,
+                "creationDate": new Date(Date.now()).toISOString(),
                 "isActive": isActive,
+
             }),
-        }).then((response) => console.log(response))
-            .catch((error) => console.log(error));
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+
+                if (callback) {
+                    console.log("Realizando función callback después de modifyNote")
+                    callback();
+                }
+            });
     }
 
     async deleteNote(id, callback) {
         return await fetch(`http://localhost:5207/Note/${id}`, {
             method: "DELETE",
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error ${response.status}: ${response.statusText}`);
-            }
-    
-            console.log('Nota eliminada con éxito');
-    
-            return response.status === 204 ? null : response.json();
-        })
-        .then((data) => {
-            console.log("Nota eliminada:" + data)  
-            
-            if (callback){
-                console.log("Realizando función callback después de deleteNote")
-                callback();
-            }
-        })
-        .catch((error) => {
-            console.error("Error al eliminar la nota: " + error)
-        })
-        
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+
+                console.log('Nota eliminada con éxito');
+
+                return response.status === 204 ? null : response.json();
+            })
+            .then((data) => {
+                console.log("Nota eliminada:" + data)
+
+                if (callback) {
+                    console.log("Realizando función callback después de deleteNote")
+                    callback();
+                }
+            })
+            .catch((error) => {
+                console.error("Error al eliminar la nota: " + error)
+            })
+
     }
 
     async searchNote(userId, title, creationDate, priority, isActive) {
