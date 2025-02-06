@@ -58,9 +58,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     
 
 
-  //Comprobación título al añadir nota en popup
-  const titleInput = document.querySelector('#title');
-  titleInput.addEventListener('input', checkTitle);
+  //Comprobación para activar/desactivar boton enviar popup
+  document.querySelector('#title').addEventListener('input', checkTitle);
+  document.querySelector('#description').addEventListener('input', checkTitle);
+  document.querySelector('#priority').addEventListener('input', checkTitle);
 
 
   //Lógica para abrir y cerrar formulario popup
@@ -68,7 +69,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const addPopup = document.getElementById('add-btn')
   const submitPopup = document.getElementById('submit-btn')
 
-  addPopup.addEventListener('click', () => popup.classList.add("notes__popup-container--show"))
+  addPopup.addEventListener('click', () =>  {
+    noteSelected = null;
+    formNote.reset();
+    checkTitle();
+    popup.classList.add("notes__popup-container--show")
+  })
+
   closePopup.addEventListener('click', () => {
     popup.classList.remove("notes__popup-container--show")
     formNote.reset();
@@ -117,6 +124,7 @@ modifyButton.addEventListener('click', async (event) => {
 
   console.log(noteValue);
 
+  checkTitle();
   popup.classList.add("notes__popup-container--show")
 
 });
@@ -232,14 +240,20 @@ document.addEventListener("click", function (event) {
 //Check titulo al añadir nueva nota
 function checkTitle() {
 
-    const noteInput = document.querySelector('#title');
+    const titleInput = document.querySelector('#title');
     const submitButton = document.querySelector('#submit-btn');
 
-    if (noteInput.value === '') {
+
+    if (noteSelected == null) {
+      submitButton.disabled = titleInput.value.trim() === '';
+    } else {
+      submitButton.disabled = titleInput.value.trim() === ''
+    }
+    /*if (titleInput.value === '') {
     submitButton.disabled = true
     } else {
     submitButton.disabled = false
-    }
+    }*/
 }
 
 //Limpiar seleccion y bloqueo de botón delete
@@ -263,16 +277,18 @@ formNote.addEventListener('submit', async function (event) {
   const noteDescription = document.querySelector('#description').value;
   const notePriority = document.querySelector('#priority').value;
 
-  console.log('Añadiendo nueva nota');
+  
 
   //Tras añadir nota, refrescar lista (callback)
   if (noteSelected == null) {
+    console.log('Añadiendo nueva nota');
     noteClass.addNote(userId, noteTitle, noteDescription, notePriority, () => {
         notifyOK("Nota añadida con éxito");
         console.log("Actualizando notas tras añadir")
         noteClass.getNotesByUserId(userId, drawNotes);
     });
   } else {
+    console.log('Modificando nota');
     noteClass.modifyNote(noteSelected, userId, noteTitle, noteDescription, notePriority, true, () => {
         notifyOK("Nota modificada con éxito");
         console.log("Actualizando notas tras modificar")
